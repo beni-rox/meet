@@ -12,132 +12,151 @@ const currentUser = {
 const userRSVP = {};
 
 // Fake participant data with realistic names, photos, and LinkedIn URLs
+// rsvpStatus can be: "accepted", "declined", "maybe", "pending"
 const fakeParticipants = {
   sarahChen: {
     name: "Sarah Chen",
     role: "Product Manager",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
     email: "sarah.chen@company.com",
-    linkedin: "https://linkedin.com/in/sarahchen"
+    linkedin: "https://linkedin.com/in/sarahchen",
+    rsvpStatus: "accepted"
   },
   mikeTorres: {
     name: "Mike Torres",
     role: "Senior Developer",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
     email: "mike.torres@company.com",
-    linkedin: "https://linkedin.com/in/miketorres"
+    linkedin: "https://linkedin.com/in/miketorres",
+    rsvpStatus: "accepted"
   },
   emilyWatson: {
     name: "Emily Watson",
     role: "UX Designer",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
     email: "emily.watson@company.com",
-    linkedin: "https://linkedin.com/in/emilywatson"
+    linkedin: "https://linkedin.com/in/emilywatson",
+    rsvpStatus: "maybe"
   },
   davidKim: {
     name: "David Kim",
     role: "QA Engineer",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
     email: "david.kim@company.com",
-    linkedin: "https://linkedin.com/in/davidkim"
+    linkedin: "https://linkedin.com/in/davidkim",
+    rsvpStatus: "accepted"
   },
   lisaPark: {
     name: "Lisa Park",
     role: "Backend Developer",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
     email: "lisa.park@company.com",
-    linkedin: "https://linkedin.com/in/lisapark"
+    linkedin: "https://linkedin.com/in/lisapark",
+    rsvpStatus: "accepted"
   },
   jamesWilson: {
     name: "James Wilson",
     role: "Frontend Developer",
     avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face",
     email: "james.wilson@company.com",
-    linkedin: "https://linkedin.com/in/jameswilson"
+    linkedin: "https://linkedin.com/in/jameswilson",
+    rsvpStatus: "declined"
   },
   annaLee: {
     name: "Anna Lee",
     role: "DevOps Engineer",
     avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face",
     email: "anna.lee@company.com",
-    linkedin: "https://linkedin.com/in/annalee"
+    linkedin: "https://linkedin.com/in/annalee",
+    rsvpStatus: "pending"
   },
   tomBrown: {
     name: "Tom Brown",
     role: "Tech Lead",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
     email: "tom.brown@company.com",
-    linkedin: "https://linkedin.com/in/tombrown"
+    linkedin: "https://linkedin.com/in/tombrown",
+    rsvpStatus: "accepted"
   },
   rachelGreen: {
     name: "Rachel Green",
     role: "Scrum Master",
     avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face",
     email: "rachel.green@company.com",
-    linkedin: "https://linkedin.com/in/rachelgreen"
+    linkedin: "https://linkedin.com/in/rachelgreen",
+    rsvpStatus: "accepted"
   },
   chrisMartin: {
     name: "Chris Martin",
     role: "Junior Developer",
     avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=100&h=100&fit=crop&crop=face",
     email: "chris.martin@company.com",
-    linkedin: "https://linkedin.com/in/chrismartin"
+    linkedin: "https://linkedin.com/in/chrismartin",
+    rsvpStatus: "maybe"
   },
   alexJohnson: {
     name: "Alex Johnson",
     role: "Engineering Lead",
     avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&h=100&fit=crop&crop=face",
     email: "alex.johnson@company.com",
-    linkedin: "https://linkedin.com/in/alexjohnson"
+    linkedin: "https://linkedin.com/in/alexjohnson",
+    rsvpStatus: "accepted"
   },
   gustavAndersson: {
     name: "Gustav Andersson",
     role: "Solutions Architect",
     avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=100&h=100&fit=crop&crop=face",
     email: "gustav@roxdata.com",
-    linkedin: "https://linkedin.com/in/gustandersson"
+    linkedin: "https://linkedin.com/in/gustandersson",
+    rsvpStatus: "accepted"
   },
   yumaTanaka: {
     name: "Yuma Tanaka",
     role: "Sales Engineer",
     avatar: "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=100&h=100&fit=crop&crop=face",
     email: "yuma@roxdata.com",
-    linkedin: "https://linkedin.com/in/yumatanaka"
+    linkedin: "https://linkedin.com/in/yumatanaka",
+    rsvpStatus: "accepted"
   },
   jenniferAdams: {
     name: "Jennifer Adams",
     role: "Account Executive",
     avatar: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop&crop=face",
     email: "jennifer.adams@company.com",
-    linkedin: "https://linkedin.com/in/jenniferadams"
+    linkedin: "https://linkedin.com/in/jenniferadams",
+    rsvpStatus: "accepted"
   },
   markThompson: {
     name: "Mark Thompson",
     role: "VP Engineering, Acme",
     avatar: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=100&h=100&fit=crop&crop=face",
     email: "mark.thompson@acme.com",
-    linkedin: "https://linkedin.com/in/markthompson"
+    linkedin: "https://linkedin.com/in/markthompson",
+    rsvpStatus: "maybe"
   },
   susanWhite: {
     name: "Susan White",
     role: "Project Manager, Acme",
     avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face",
     email: "susan.white@acme.com",
-    linkedin: "https://linkedin.com/in/susanwhite"
+    linkedin: "https://linkedin.com/in/susanwhite",
+    rsvpStatus: "declined"
   },
   ceoJohn: {
     name: "John Smith",
     role: "Chief Executive Officer",
     avatar: "https://images.unsplash.com/photo-1556157382-97eda2f9e2bf?w=100&h=100&fit=crop&crop=face",
     email: "john.smith@company.com",
-    linkedin: "https://linkedin.com/in/johnsmithceo"
+    linkedin: "https://linkedin.com/in/johnsmithceo",
+    rsvpStatus: "accepted"
   },
   ctoMaria: {
     name: "Maria Garcia",
     role: "Chief Technology Officer",
     avatar: "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=100&h=100&fit=crop&crop=face",
     email: "maria.garcia@company.com",
-    linkedin: "https://linkedin.com/in/mariagarcia"
+    linkedin: "https://linkedin.com/in/mariagarcia",
+    rsvpStatus: "accepted"
   }
 };
 
@@ -146,37 +165,44 @@ const companies = {
   internal: { 
     name: "Internal", 
     size: "1:1 Meeting",
-    logo: null
+    logo: null,
+    url: null
   },
   internalTeam: { 
     name: "Internal Team", 
     size: "10 participants",
-    logo: null
+    logo: null,
+    url: null
   },
   roxDataCorp: { 
     name: "Rox Data Corp", 
     size: "200 employees",
-    logo: "https://logo.clearbit.com/hubspot.com"
+    logo: "https://logo.clearbit.com/hubspot.com",
+    url: "https://hubspot.com"
   },
   roxCorp: { 
     name: "Rox Corp", 
     size: "200+ employees",
-    logo: "https://logo.clearbit.com/stripe.com"
+    logo: "https://logo.clearbit.com/stripe.com",
+    url: "https://stripe.com"
   },
   acme: { 
     name: "Acme Corporation", 
     size: "5,000 employees",
-    logo: "https://logo.clearbit.com/slack.com"
+    logo: "https://logo.clearbit.com/slack.com",
+    url: "https://slack.com"
   },
   social: { 
     name: "Social", 
     size: "Optional",
-    logo: null
+    logo: null,
+    url: null
   },
   na: { 
     name: "N/A", 
     size: "Personal block",
-    logo: null
+    logo: null,
+    url: null
   }
 };
 
@@ -860,6 +886,19 @@ function updateMeetingPanel(meeting) {
     companyDefaultIcon.style.display = 'block';
   }
   
+  // Update company open button
+  const companyOpenBtn = document.getElementById('companyOpenBtn');
+  if (companyOpenBtn) {
+    if (meeting.company.url) {
+      companyOpenBtn.style.display = '';
+      companyOpenBtn.onclick = () => {
+        window.open(meeting.company.url, '_blank');
+      };
+    } else {
+      companyOpenBtn.style.display = 'none';
+    }
+  }
+  
   // Update AI summary
   document.getElementById('aiSummaryText').textContent = meeting.summary;
   
@@ -882,13 +921,39 @@ function updateParticipants(participants, meetingId) {
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
   </svg>`;
   
+  // RSVP badge SVG icons
+  const rsvpBadgeIcons = {
+    accepted: `<svg class="rsvp-badge-icon" width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M2 5L4 7L8 3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>`,
+    declined: `<svg class="rsvp-badge-icon" width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M2.5 2.5L7.5 7.5M7.5 2.5L2.5 7.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+    maybe: `<svg class="rsvp-badge-icon" width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M5 3V5.5M5 7V7.01" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`,
+    pending: `<svg class="rsvp-badge-icon" width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M5 3V5.5M5 7V7.01" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>`
+  };
+  
+  // Get user's RSVP badge based on their selection
+  function getUserRsvpBadge(meetingId) {
+    const rsvp = userRSVP[meetingId] || 'yes';
+    const statusMap = { yes: 'accepted', maybe: 'maybe', no: 'declined' };
+    return statusMap[rsvp];
+  }
+  
   // Always add current user first with RSVP controls
   const userDiv = document.createElement('div');
   userDiv.className = 'participant user-participant';
   const currentRSVP = userRSVP[meetingId] || 'yes';
+  const userBadgeStatus = getUserRsvpBadge(meetingId);
   userDiv.innerHTML = `
     <div class="participant-avatar">
-      <img src="${currentUser.avatar}" alt="${currentUser.name}" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, #f6c343 0%, #e5a91a 100%)'; this.parentElement.innerHTML='<span style=\\"color:white;font-size:14px;font-weight:500;\\">${currentUser.name.charAt(0)}</span>'">
+      <img src="${currentUser.avatar}" alt="${currentUser.name}" class="participant-img">
+      <span class="avatar-fallback" style="display:none;">${currentUser.name.charAt(0)}</span>
+      <span class="rsvp-badge rsvp-${userBadgeStatus}" title="${userBadgeStatus.charAt(0).toUpperCase() + userBadgeStatus.slice(1)}">${rsvpBadgeIcons[userBadgeStatus]}</span>
     </div>
     <div class="participant-info">
       <div class="participant-name-wrapper">
@@ -902,6 +967,20 @@ function updateParticipants(participants, meetingId) {
       <button class="rsvp-btn ${currentRSVP === 'no' ? 'active' : ''}" data-rsvp="no" data-meeting="${meetingId}">No</button>
     </div>
   `;
+  
+  // Set up image error handling properly
+  const userImg = userDiv.querySelector('.participant-img');
+  const userFallback = userDiv.querySelector('.avatar-fallback');
+  if (userImg) {
+    userImg.onerror = function() {
+      this.style.display = 'none';
+      if (userFallback) {
+        userFallback.style.display = 'flex';
+        userFallback.style.background = 'linear-gradient(135deg, #f6c343 0%, #e5a91a 100%)';
+      }
+    };
+  }
+  
   container.appendChild(userDiv);
   
   // Add RSVP event listeners
@@ -923,6 +1002,16 @@ function updateParticipants(participants, meetingId) {
           }
         });
         
+        // Update the user's RSVP badge
+        const statusMap = { yes: 'accepted', maybe: 'maybe', no: 'declined' };
+        const newStatus = statusMap[rsvpValue];
+        const badge = userDiv.querySelector('.rsvp-badge');
+        if (badge) {
+          badge.className = `rsvp-badge rsvp-${newStatus}`;
+          badge.title = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+          badge.innerHTML = rsvpBadgeIcons[newStatus];
+        }
+        
         // Show toast notification
         const rsvpMessages = {
           yes: 'RSVP updated to Yes',
@@ -942,9 +1031,14 @@ function updateParticipants(participants, meetingId) {
   participants.forEach((participant, index) => {
     const div = document.createElement('div');
     div.className = 'participant';
+    const rsvpStatus = participant.rsvpStatus || 'pending';
+    const avatarColor = getAvatarColor(index);
+    const darkerColor = getDarkerColor(index);
     div.innerHTML = `
       <div class="participant-avatar">
-        <img src="${participant.avatar}" alt="${participant.name}" onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg, ${getAvatarColor(index)} 0%, ${getDarkerColor(index)} 100%)'; this.parentElement.innerHTML='<span style=\\"color:white;font-size:14px;font-weight:500;\\">${participant.name.charAt(0)}</span>'">
+        <img src="${participant.avatar}" alt="${participant.name}" class="participant-img">
+        <span class="avatar-fallback" style="display:none;" data-color1="${avatarColor}" data-color2="${darkerColor}">${participant.name.charAt(0)}</span>
+        <span class="rsvp-badge rsvp-${rsvpStatus}" title="${rsvpStatus.charAt(0).toUpperCase() + rsvpStatus.slice(1)}">${rsvpBadgeIcons[rsvpStatus]}</span>
       </div>
       <div class="participant-info">
         <div class="participant-name-wrapper">
@@ -954,14 +1048,38 @@ function updateParticipants(participants, meetingId) {
         <span class="participant-role">${participant.role}</span>
       </div>
       <div class="participant-actions">
-        <a href="mailto:${participant.email}" class="action-icon email" title="Send email">
+        <button class="action-icon email" title="Send email" data-participant-index="${index}">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <rect x="1.33" y="2.67" width="13.33" height="10.67" rx="1.33" stroke="#888" stroke-width="1.33"/>
             <path d="M1.33 5.33L8 9.33L14.67 5.33" stroke="#888" stroke-width="1.33" stroke-linecap="round"/>
           </svg>
-        </a>
+        </button>
       </div>
     `;
+    
+    // Add email button click handler
+    const emailBtn = div.querySelector('.action-icon.email');
+    if (emailBtn) {
+      emailBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openEmailComposer(participant);
+      });
+    }
+    
+    // Set up image error handling properly
+    const img = div.querySelector('.participant-img');
+    const fallback = div.querySelector('.avatar-fallback');
+    if (img) {
+      img.onerror = function() {
+        this.style.display = 'none';
+        if (fallback) {
+          fallback.style.display = 'flex';
+          fallback.style.background = `linear-gradient(135deg, ${fallback.dataset.color1} 0%, ${fallback.dataset.color2} 100%)`;
+        }
+      };
+    }
+    
     container.appendChild(div);
   });
 }
@@ -1743,3 +1861,368 @@ function toggleTheme() {
 // Expose theme functions globally for external use
 window.setTheme = setTheme;
 window.toggleTheme = toggleTheme;
+
+// ==================== CALENDAR CONNECTION STATE ====================
+
+let isCalendarConnected = true; // Default: calendar is connected
+
+function initCalendarConnection() {
+  const toggleBtn = document.getElementById('toggleCalendarConnection');
+  const toggleText = document.getElementById('toggleCalendarText');
+  const connectGoogleBtn = document.getElementById('connectGoogleBtn');
+  const connectMicrosoftBtn = document.getElementById('connectMicrosoftBtn');
+  const overlay = document.getElementById('calendarConnectOverlay');
+  
+  // Toggle calendar connection from user dropdown (for testing)
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      isCalendarConnected = !isCalendarConnected;
+      updateCalendarConnectionUI();
+      
+      // Close dropdown
+      const userDropdown = document.getElementById('userDropdown');
+      if (userDropdown) {
+        userDropdown.classList.remove('visible');
+      }
+      
+      // Show toast
+      if (isCalendarConnected) {
+        showToast('Calendar connected', 'success');
+      } else {
+        showToast('Calendar disconnected (test mode)', 'info');
+      }
+    });
+  }
+  
+  // Google connect button
+  if (connectGoogleBtn) {
+    connectGoogleBtn.addEventListener('click', () => {
+      simulateCalendarConnection('Google');
+    });
+  }
+  
+  // Microsoft connect button
+  if (connectMicrosoftBtn) {
+    connectMicrosoftBtn.addEventListener('click', () => {
+      simulateCalendarConnection('Microsoft Outlook');
+    });
+  }
+  
+  // Initial state
+  updateCalendarConnectionUI();
+}
+
+function simulateCalendarConnection(provider) {
+  const overlay = document.getElementById('calendarConnectOverlay');
+  const btn = provider === 'Google' 
+    ? document.getElementById('connectGoogleBtn')
+    : document.getElementById('connectMicrosoftBtn');
+  
+  // Show loading state
+  if (btn) {
+    const originalContent = btn.innerHTML;
+    btn.innerHTML = `
+      <div class="loading-dots" style="display: flex; gap: 4px;">
+        <span style="width: 6px; height: 6px; background: var(--accent-gold); border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite;"></span>
+        <span style="width: 6px; height: 6px; background: var(--accent-gold); border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite 0.2s;"></span>
+        <span style="width: 6px; height: 6px; background: var(--accent-gold); border-radius: 50%; animation: loadingDot 1.4s ease-in-out infinite 0.4s;"></span>
+      </div>
+      <span>Connecting...</span>
+    `;
+    btn.disabled = true;
+    
+    // Simulate API delay
+    setTimeout(() => {
+      isCalendarConnected = true;
+      updateCalendarConnectionUI();
+      
+      // Show success toast
+      showToast(`${provider} calendar connected successfully!`, 'success');
+      
+      // Restore button (though overlay will be hidden)
+      btn.innerHTML = originalContent;
+      btn.disabled = false;
+    }, 1500);
+  }
+}
+
+function updateCalendarConnectionUI() {
+  const overlay = document.getElementById('calendarConnectOverlay');
+  const toggleText = document.getElementById('toggleCalendarText');
+  const currentTimeIndicator = document.getElementById('currentTimeIndicator');
+  const calendarEvents = document.querySelectorAll('.calendar-event');
+  
+  if (isCalendarConnected) {
+    // Hide connect overlay, show calendar events
+    if (overlay) overlay.classList.remove('visible');
+    if (currentTimeIndicator) currentTimeIndicator.style.display = 'flex';
+    if (toggleText) toggleText.textContent = 'Test: Disconnect Calendar';
+    // Show all events
+    calendarEvents.forEach(event => event.style.display = '');
+  } else {
+    // Show connect overlay, hide calendar events
+    if (overlay) overlay.classList.add('visible');
+    if (currentTimeIndicator) currentTimeIndicator.style.display = 'none';
+    if (toggleText) toggleText.textContent = 'Test: Reconnect Calendar';
+    // Hide all events
+    calendarEvents.forEach(event => event.style.display = 'none');
+  }
+}
+
+// Initialize calendar connection on page load
+document.addEventListener('DOMContentLoaded', () => {
+  initCalendarConnection();
+  initEmailComposer();
+});
+
+// ==================== EMAIL COMPOSER ====================
+
+let currentEmailRecipient = null;
+
+function initEmailComposer() {
+  const overlay = document.getElementById('emailComposerOverlay');
+  const closeBtn = document.getElementById('emailComposerClose');
+  const sendBtn = document.getElementById('emailSendBtn');
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const saveStyleBtn = document.getElementById('saveStyleBtn');
+  const sendTestBtn = document.getElementById('sendTestBtn');
+  const recipientRemove = document.getElementById('recipientRemove');
+  
+  // Close composer when clicking overlay background
+  if (overlay) {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeEmailComposer();
+      }
+    });
+  }
+  
+  // Close button
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeEmailComposer);
+  }
+  
+  // Escape key to close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('visible')) {
+      closeEmailComposer();
+    }
+  });
+  
+  // Send button
+  if (sendBtn) {
+    sendBtn.addEventListener('click', () => {
+      sendEmail();
+    });
+  }
+  
+  // Copy button
+  if (copyBtn) {
+    copyBtn.addEventListener('click', () => {
+      copyEmailToClipboard();
+    });
+  }
+  
+  // Save style button
+  if (saveStyleBtn) {
+    saveStyleBtn.addEventListener('click', () => {
+      showToast('Style saved successfully', 'success');
+    });
+  }
+  
+  // Send test email button
+  if (sendTestBtn) {
+    sendTestBtn.addEventListener('click', () => {
+      showToast('Test email sent to your inbox', 'success');
+    });
+  }
+  
+  // Remove recipient
+  if (recipientRemove) {
+    recipientRemove.addEventListener('click', () => {
+      const recipient = document.getElementById('emailRecipient');
+      if (recipient) {
+        recipient.classList.add('hidden');
+        currentEmailRecipient = null;
+      }
+    });
+  }
+  
+  // Toolbar formatting buttons
+  document.querySelectorAll('.toolbar-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const format = btn.dataset.format;
+      if (format) {
+        applyEmailFormat(format);
+        btn.classList.toggle('active');
+      }
+    });
+  });
+}
+
+function openEmailComposer(participant) {
+  const overlay = document.getElementById('emailComposerOverlay');
+  const titleEl = document.getElementById('emailComposerTitle');
+  const recipientEl = document.getElementById('emailRecipient');
+  const recipientAvatar = document.getElementById('recipientAvatar');
+  const recipientEmail = document.getElementById('recipientEmail');
+  const subjectInput = document.getElementById('emailSubjectInput');
+  const emailBody = document.getElementById('emailBody');
+  
+  if (!overlay) return;
+  
+  currentEmailRecipient = participant;
+  
+  // Update title
+  if (titleEl) {
+    titleEl.textContent = `Email to ${participant.name.split(' ')[0]}`;
+  }
+  
+  // Update recipient display
+  if (recipientEl) {
+    recipientEl.classList.remove('hidden');
+  }
+  
+  if (recipientAvatar) {
+    recipientAvatar.textContent = participant.name.charAt(0);
+    // Set avatar color based on name
+    const colors = ['#7eb8c9', '#c9a66b', '#9b7eb8', '#7eb87e', '#b87e7e'];
+    const colorIndex = participant.name.charCodeAt(0) % colors.length;
+    recipientAvatar.style.background = `linear-gradient(135deg, ${colors[colorIndex]} 0%, ${getDarkerShade(colors[colorIndex])} 100%)`;
+  }
+  
+  if (recipientEmail) {
+    recipientEmail.textContent = participant.email;
+  }
+  
+  // Pre-fill subject with participant name
+  if (subjectInput) {
+    subjectInput.value = `Quick hello from Rox`;
+  }
+  
+  // Pre-fill body with greeting
+  if (emailBody) {
+    emailBody.innerHTML = `<p>Hi ${participant.name.split(' ')[0]},</p><p></p><p>Hope you are doing well. I wanted to reach out and say hi.</p><p></p><p>Best,</p>`;
+  }
+  
+  // Show the overlay
+  overlay.classList.add('visible');
+  
+  // Focus the body
+  setTimeout(() => {
+    if (emailBody) {
+      emailBody.focus();
+      // Place cursor at the end
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.selectNodeContents(emailBody);
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  }, 100);
+}
+
+function closeEmailComposer() {
+  const overlay = document.getElementById('emailComposerOverlay');
+  if (overlay) {
+    overlay.classList.remove('visible');
+  }
+  currentEmailRecipient = null;
+}
+
+function sendEmail() {
+  const subjectInput = document.getElementById('emailSubjectInput');
+  const emailBody = document.getElementById('emailBody');
+  
+  if (!currentEmailRecipient) {
+    showToast('Please add a recipient', 'info');
+    return;
+  }
+  
+  if (!subjectInput?.value.trim()) {
+    showToast('Please add a subject', 'info');
+    return;
+  }
+  
+  if (!emailBody?.textContent.trim()) {
+    showToast('Please write a message', 'info');
+    return;
+  }
+  
+  // Simulate sending
+  showToast(`Email sent to ${currentEmailRecipient.name}`, 'success');
+  closeEmailComposer();
+}
+
+function copyEmailToClipboard() {
+  const emailBody = document.getElementById('emailBody');
+  const signature = document.getElementById('emailSignature');
+  
+  if (emailBody) {
+    const bodyText = emailBody.innerText;
+    const signatureText = signature ? '\n\n' + signature.innerText : '';
+    const fullText = bodyText + signatureText;
+    
+    navigator.clipboard.writeText(fullText).then(() => {
+      showToast('Email copied to clipboard', 'success');
+    }).catch(() => {
+      showToast('Failed to copy', 'info');
+    });
+  }
+}
+
+function applyEmailFormat(format) {
+  const emailBody = document.getElementById('emailBody');
+  if (!emailBody) return;
+  
+  emailBody.focus();
+  
+  switch (format) {
+    case 'bold':
+      document.execCommand('bold', false, null);
+      break;
+    case 'italic':
+      document.execCommand('italic', false, null);
+      break;
+    case 'strikethrough':
+      document.execCommand('strikethrough', false, null);
+      break;
+    case 'alignLeft':
+      document.execCommand('justifyLeft', false, null);
+      break;
+    case 'alignCenter':
+      document.execCommand('justifyCenter', false, null);
+      break;
+    case 'alignRight':
+      document.execCommand('justifyRight', false, null);
+      break;
+    case 'alignJustify':
+      document.execCommand('justifyFull', false, null);
+      break;
+    case 'orderedList':
+      document.execCommand('insertOrderedList', false, null);
+      break;
+    case 'unorderedList':
+      document.execCommand('insertUnorderedList', false, null);
+      break;
+    case 'link':
+      const url = prompt('Enter URL:');
+      if (url) {
+        document.execCommand('createLink', false, url);
+      }
+      break;
+  }
+}
+
+function getDarkerShade(color) {
+  // Simple darker shade calculation
+  const hex = color.replace('#', '');
+  const r = Math.max(0, parseInt(hex.substr(0, 2), 16) - 40);
+  const g = Math.max(0, parseInt(hex.substr(2, 2), 16) - 40);
+  const b = Math.max(0, parseInt(hex.substr(4, 2), 16) - 40);
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+}

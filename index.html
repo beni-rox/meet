@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ROX - Meet</title>
-  <link rel="stylesheet" href="styles.css?v=7">
+  <link rel="stylesheet" href="styles.css?v=8">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -216,6 +216,15 @@
               <span>Log Out</span>
             </a>
             <div class="user-dropdown-divider"></div>
+            <a href="#" class="user-dropdown-item" id="toggleCalendarConnection">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" stroke-width="1.33"/>
+                <path d="M2 6h12" stroke="currentColor" stroke-width="1.33"/>
+                <path d="M5 1.5v3M11 1.5v3" stroke="currentColor" stroke-width="1.33" stroke-linecap="round"/>
+              </svg>
+              <span id="toggleCalendarText">Test: Disconnect Calendar</span>
+            </a>
+            <div class="user-dropdown-divider"></div>
             <div class="user-dropdown-footer">
               <button class="footer-icon-btn" title="Desktop app">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -324,6 +333,34 @@
 
               <div class="days-container" id="daysContainer">
                 <!-- Days and events will be populated by JavaScript -->
+              </div>
+
+              <!-- Calendar Not Connected Empty State -->
+              <div class="calendar-connect-overlay" id="calendarConnectOverlay">
+                <div class="connect-content">
+                  <h3 class="connect-title">Connect your calendar</h3>
+                  <p class="connect-description">Sync your Google or Microsoft calendar to see your meetings and get AI-powered prep.</p>
+                  <div class="connect-buttons">
+                    <button class="connect-btn google" id="connectGoogleBtn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <path d="M17.64 9.2c0-.63-.06-1.25-.16-1.84H9v3.49h4.84a4.14 4.14 0 01-1.8 2.72v2.26h2.92a8.78 8.78 0 002.68-6.63z" fill="#4285F4"/>
+                        <path d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.71H.96v2.33A9 9 0 009 18z" fill="#34A853"/>
+                        <path d="M3.97 10.71A5.41 5.41 0 013.69 9c0-.6.1-1.17.28-1.71V4.96H.96A9 9 0 000 9c0 1.45.35 2.82.96 4.04l3.01-2.33z" fill="#FBBC05"/>
+                        <path d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.59A9 9 0 009 0 9 9 0 00.96 4.96l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z" fill="#EA4335"/>
+                      </svg>
+                      <span>Connect Google</span>
+                    </button>
+                    <button class="connect-btn microsoft" id="connectMicrosoftBtn">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                        <rect x="1" y="1" width="7" height="7" fill="#F25022"/>
+                        <rect x="10" y="1" width="7" height="7" fill="#7FBA00"/>
+                        <rect x="1" y="10" width="7" height="7" fill="#00A4EF"/>
+                        <rect x="10" y="10" width="7" height="7" fill="#FFB900"/>
+                      </svg>
+                      <span>Connect Outlook</span>
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <!-- Current time indicator -->
@@ -481,22 +518,8 @@
               </div>
             </div>
 
-            <div class="participants-section" id="participantsSection">
-              <div class="participants-wrapper">
-                <div class="participants-icon">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <circle cx="8" cy="5" r="3" stroke="#888" stroke-width="1.33"/>
-                    <path d="M2 14c0-3 2.69-5 6-5s6 2 6 5" stroke="#888" stroke-width="1.33" stroke-linecap="round"/>
-                  </svg>
-                </div>
-                <div class="participants-list" id="participantsList">
-                  <!-- Participants will be populated by JavaScript -->
-                </div>
-              </div>
-            </div>
-
             <div class="company-section" id="companySection">
-              <div class="company-item">
+              <div class="company-item" id="companyItem">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <rect x="1" y="4" width="14" height="11" rx="1" stroke="#888" stroke-width="1.33"/>
                   <path d="M4 4V2a1 1 0 011-1h6a1 1 0 011 1v2" stroke="#888" stroke-width="1.33"/>
@@ -513,6 +536,28 @@
                 <div class="company-info">
                   <span class="company-name" id="companyName">No company</span>
                   <span class="company-size" id="companySize">-</span>
+                </div>
+                <button class="company-open-btn" id="companyOpenBtn" title="Open in new tab">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M5 1H2C1.44772 1 1 1.44772 1 2V10C1 10.5523 1.44772 11 2 11H10C10.5523 11 11 10.5523 11 10V7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                    <path d="M7 1H11V5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11 1L6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                  <span>Open</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="participants-section" id="participantsSection">
+              <div class="participants-wrapper">
+                <div class="participants-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <circle cx="8" cy="5" r="3" stroke="#888" stroke-width="1.33"/>
+                    <path d="M2 14c0-3 2.69-5 6-5s6 2 6 5" stroke="#888" stroke-width="1.33" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div class="participants-list" id="participantsList">
+                  <!-- Participants will be populated by JavaScript -->
                 </div>
               </div>
             </div>
@@ -670,6 +715,135 @@
 
   <!-- Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Email Composer Modal -->
+  <div class="email-composer-overlay" id="emailComposerOverlay">
+    <div class="email-composer" id="emailComposer">
+      <div class="email-composer-header">
+        <span class="email-composer-title" id="emailComposerTitle">New email</span>
+        <button class="email-composer-close" id="emailComposerClose" title="Close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      
+      <div class="email-composer-content">
+        <div class="email-field">
+          <label class="email-field-label">To</label>
+          <div class="email-field-value" id="emailToField">
+            <span class="email-recipient" id="emailRecipient">
+              <span class="recipient-avatar" id="recipientAvatar">S</span>
+              <span class="recipient-email" id="recipientEmail">recipient@company.com</span>
+              <button class="recipient-remove" id="recipientRemove" title="Remove">×</button>
+            </span>
+            <input type="text" class="email-to-input" id="emailToInput" placeholder="Add contact" />
+          </div>
+        </div>
+        
+        <div class="email-field">
+          <label class="email-field-label">Subject</label>
+          <input type="text" class="email-subject-input" id="emailSubjectInput" placeholder="Subject" />
+        </div>
+        
+        <div class="email-body-container">
+          <div class="email-body" id="emailBody" contenteditable="true" data-placeholder="Compose your email..."></div>
+          
+          <div class="email-signature" id="emailSignature">
+            <div class="signature-name">Yuma Tanaka</div>
+            <div class="signature-role">Head of Product @ Rox</div>
+            <div class="signature-location">San Francisco, CA</div>
+          </div>
+        </div>
+        
+        <div class="email-toolbar">
+          <button class="toolbar-btn" data-format="bold" title="Bold">
+            <strong>B</strong>
+          </button>
+          <button class="toolbar-btn" data-format="italic" title="Italic">
+            <em>I</em>
+          </button>
+          <button class="toolbar-btn" data-format="strikethrough" title="Strikethrough">
+            <s>S</s>
+          </button>
+          <div class="toolbar-divider"></div>
+          <button class="toolbar-btn" data-format="alignLeft" title="Align left">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 3h12M2 6h8M2 9h12M2 12h8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="toolbar-btn" data-format="alignCenter" title="Align center">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 3h12M4 6h8M2 9h12M4 12h8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="toolbar-btn" data-format="alignRight" title="Align right">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 3h12M6 6h8M2 9h12M6 12h8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="toolbar-btn" data-format="alignJustify" title="Justify">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 3h12M2 6h12M2 9h12M2 12h12" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <div class="toolbar-divider"></div>
+          <button class="toolbar-btn" data-format="orderedList" title="Numbered list">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3h8M6 8h8M6 13h8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+              <text x="2" y="5" font-size="5" fill="currentColor">1.</text>
+              <text x="2" y="10" font-size="5" fill="currentColor">2.</text>
+              <text x="2" y="15" font-size="5" fill="currentColor">3.</text>
+            </svg>
+          </button>
+          <button class="toolbar-btn" data-format="unorderedList" title="Bullet list">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3h8M6 8h8M6 13h8" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+              <circle cx="3" cy="3" r="1.5" fill="currentColor"/>
+              <circle cx="3" cy="8" r="1.5" fill="currentColor"/>
+              <circle cx="3" cy="13" r="1.5" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="toolbar-btn" data-format="link" title="Insert link">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6.67 8.67a3.33 3.33 0 005 .43l2-2a3.33 3.33 0 00-4.71-4.71l-1.14 1.13" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+              <path d="M9.33 7.33a3.33 3.33 0 00-5-.43l-2 2a3.33 3.33 0 004.71 4.71l1.13-1.13" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <div class="email-composer-footer">
+        <div class="email-footer-left">
+          <button class="email-secondary-btn" id="copyEmailBtn" title="Copy to clipboard">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <rect x="5" y="5" width="8" height="8" rx="1" stroke="currentColor" stroke-width="1.25"/>
+              <path d="M3 11V3.5A.5.5 0 013.5 3H11" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="email-secondary-btn" id="saveStyleBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.25"/>
+              <path d="M8 5v6M5 8h6" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+            </svg>
+            <span>Save style</span>
+          </button>
+          <button class="email-secondary-btn" id="sendTestBtn">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M1.33 8L14.67 8M14.67 8L10 3.33M14.67 8L10 12.67" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Send Test Email</span>
+          </button>
+        </div>
+        <button class="email-send-btn" id="emailSendBtn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M1.33 8L14.67 8M14.67 8L10 3.33M14.67 8L10 12.67" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Send</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
