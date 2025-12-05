@@ -462,8 +462,45 @@ const currentTimeIndicator = document.getElementById('currentTimeIndicator');
 const meetingPanel = document.getElementById('meetingPanel');
 const meetingTooltip = document.getElementById('meetingTooltip');
 
+// Detect scrollbar width for Windows alignment (fallback for older browsers)
+function detectScrollbarWidth() {
+  // Check if scrollbar-gutter is supported
+  const supportsScrollbarGutter = CSS.supports && CSS.supports('scrollbar-gutter', 'stable');
+  
+  // Create a temporary element to measure scrollbar width
+  const outer = document.createElement('div');
+  outer.style.visibility = 'hidden';
+  outer.style.overflow = 'scroll';
+  outer.style.width = '100px';
+  outer.style.height = '100px';
+  document.body.appendChild(outer);
+  
+  const inner = document.createElement('div');
+  inner.style.width = '100%';
+  inner.style.height = '100%';
+  outer.appendChild(inner);
+  
+  const scrollbarWidth = outer.offsetWidth - inner.offsetWidth;
+  document.body.removeChild(outer);
+  
+  // Set CSS variable for scrollbar gutter compensation (used as fallback)
+  if (scrollbarWidth > 0 && !supportsScrollbarGutter) {
+    document.documentElement.style.setProperty('--scrollbar-gutter', `${scrollbarWidth}px`);
+    // Apply padding-right to day-headers as fallback
+    const dayHeaders = document.getElementById('dayHeaders');
+    if (dayHeaders) {
+      dayHeaders.style.paddingRight = `${scrollbarWidth}px`;
+    }
+  }
+  
+  return scrollbarWidth;
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+  // Detect scrollbar width early for layout calculations
+  detectScrollbarWidth();
+  
   renderCalendar();
   renderMiniCalendar();
   updateCurrentTimeIndicator();

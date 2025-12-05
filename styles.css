@@ -48,6 +48,7 @@
   /* Spacing */
   --sidebar-width: 200px;
   --panel-width: 380px;
+  --scrollbar-gutter: 0px; /* Set dynamically via JS for Windows */
   
   /* Shadows */
   --shadow-card: 0px 1px 2px -1px rgba(41, 28, 10, 0.05), 0px 3px 6px -3px rgba(84, 66, 45, 0.1);
@@ -447,13 +448,60 @@ html, body {
   padding-right: 4px;
 }
 
+/* Scrollbar Styling for Windows/Edge */
+:root {
+  --scrollbar-width: 8px;
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.35);
+}
+
+html[data-theme="dark"] {
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
+}
+
+/* Global scrollbar styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: var(--scrollbar-width);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Sidebar specific - narrower scrollbar */
 .sidebar-nav::-webkit-scrollbar {
   width: 4px;
 }
 
 .sidebar-nav::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--scrollbar-thumb);
   border-radius: 4px;
+  border: none;
 }
 
 .nav-section {
@@ -918,6 +966,7 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0; /* Important: allows flex child to shrink below content size */
 }
 
 .day-headers {
@@ -925,6 +974,9 @@ html, body {
   border-bottom: 1px solid var(--border-light);
   background: var(--bg-card);
   flex-shrink: 0;
+  /* Reserve space for scrollbar to match time-grid on Windows */
+  scrollbar-gutter: stable;
+  overflow-x: hidden; /* Hide but reserve gutter space */
 }
 
 .time-gutter {
@@ -937,7 +989,7 @@ html, body {
   padding: 10px 6px;
   text-align: center;
   border-left: 1px solid var(--border-light);
-  min-width: 100px;
+  min-width: 0; /* Allow headers to shrink with columns */
 }
 
 .day-header.today .day-number {
@@ -974,6 +1026,9 @@ html, body {
   display: flex;
   overflow: auto;
   position: relative;
+  min-height: 0; /* Allow flex shrinking */
+  /* Reserve space for scrollbar to prevent layout shift on Windows */
+  scrollbar-gutter: stable;
 }
 
 .time-column {
@@ -982,6 +1037,7 @@ html, body {
   border-right: 1px solid var(--border-light);
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .time-slot {
@@ -991,7 +1047,7 @@ html, body {
   justify-content: flex-end;
   padding: 0 8px;
   position: relative;
-  min-height: 30px;
+  min-height: 0; /* Allow slots to shrink to fit container */
 }
 
 .time-slot span {
@@ -1006,15 +1062,17 @@ html, body {
   display: flex;
   position: relative;
   min-width: max-content;
+  height: 100%;
 }
 
 .day-column {
   flex: 1;
   border-left: 1px solid var(--border-light);
   position: relative;
-  min-width: 100px;
+  min-width: 0; /* Allow columns to shrink */
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .day-column.today {
@@ -1028,7 +1086,7 @@ html, body {
 .hour-slot {
   flex: 1;
   border-bottom: 1px solid var(--border-tertiary);
-  min-height: 30px;
+  min-height: 0; /* Allow slots to shrink to fit container */
 }
 
 
@@ -1836,7 +1894,7 @@ a.participant-linkedin-icon:hover {
 
 /* Panel Footer */
 .panel-footer {
-  padding: 8px 16px 12px 16px;
+  padding: 0px 16px 12px 16px;
   border-top: 0px solid var(--border-light);
   background-color: rgba(255, 255, 255, 0);
 }
